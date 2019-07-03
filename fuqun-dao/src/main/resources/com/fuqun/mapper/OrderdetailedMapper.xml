@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fuqun.mapper.OrderdetailedMapper" >
+  <resultMap id="BaseResultMap" type="com.fuqun.pojo.Orderdetailed" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="Order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="part_id" property="partId" jdbcType="BIGINT" />
+    <result column="model_id" property="modelId" jdbcType="BIGINT" />
+    <result column="hardness_id" property="hardnessId" jdbcType="BIGINT" />
+    <result column="coil_number" property="coilNumber" jdbcType="VARCHAR" />
+    <result column="goods_image" property="goodsImage" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="quantity" property="quantity" jdbcType="BIGINT" />
+    <result column="total_count" property="totalCount" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, Order_no, goods_id, good_name, country_id, brand_id, part_id, model_id, 
+    hardness_id, coil_number, goods_image, price, quantity, total_count, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fuqun.pojo.OrderdetailedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orderdetailed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetailed
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from orderdetailed
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fuqun.pojo.OrderdetailedExample" >
+    delete from orderdetailed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fuqun.pojo.Orderdetailed" >
+    insert into orderdetailed (id, user_id, Order_no, 
+      goods_id, good_name, country_id, 
+      brand_id, part_id, model_id, 
+      hardness_id, coil_number, goods_image, 
+      price, quantity, total_count, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=BIGINT}, #{goodName,jdbcType=VARCHAR}, #{countryId,jdbcType=BIGINT}, 
+      #{brandId,jdbcType=BIGINT}, #{partId,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, 
+      #{hardnessId,jdbcType=BIGINT}, #{coilNumber,jdbcType=VARCHAR}, #{goodsImage,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=BIGINT}, #{totalCount,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fuqun.pojo.Orderdetailed" >
+    insert into orderdetailed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderNo != null" >
+        Order_no,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="partId != null" >
+        part_id,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="hardnessId != null" >
+        hardness_id,
+      </if>
+      <if test="coilNumber != null" >
+        coil_number,
+      </if>
+      <if test="goodsImage != null" >
+        goods_image,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="totalCount != null" >
+        total_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="hardnessId != null" >
+        #{hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="coilNumber != null" >
+        #{coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalCount != null" >
+        #{totalCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fuqun.pojo.OrderdetailedExample" resultType="java.lang.Integer" >
+    select count(*) from orderdetailed
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update orderdetailed
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null" >
+        Order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodName != null" >
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.partId != null" >
+        part_id = #{record.partId,jdbcType=BIGINT},
+      </if>
+      <if test="record.modelId != null" >
+        model_id = #{record.modelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.hardnessId != null" >
+        hardness_id = #{record.hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.coilNumber != null" >
+        coil_number = #{record.coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImage != null" >
+        goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.quantity != null" >
+        quantity = #{record.quantity,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalCount != null" >
+        total_count = #{record.totalCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update orderdetailed
+    set id = #{record.id,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      Order_no = #{record.orderNo,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      brand_id = #{record.brandId,jdbcType=BIGINT},
+      part_id = #{record.partId,jdbcType=BIGINT},
+      model_id = #{record.modelId,jdbcType=BIGINT},
+      hardness_id = #{record.hardnessId,jdbcType=BIGINT},
+      coil_number = #{record.coilNumber,jdbcType=VARCHAR},
+      goods_image = #{record.goodsImage,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      quantity = #{record.quantity,jdbcType=BIGINT},
+      total_count = #{record.totalCount,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fuqun.pojo.Orderdetailed" >
+    update orderdetailed
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        Order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        part_id = #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="hardnessId != null" >
+        hardness_id = #{hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="coilNumber != null" >
+        coil_number = #{coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null" >
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalCount != null" >
+        total_count = #{totalCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fuqun.pojo.Orderdetailed" >
+    update orderdetailed
+    set user_id = #{userId,jdbcType=BIGINT},
+      Order_no = #{orderNo,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      part_id = #{partId,jdbcType=BIGINT},
+      model_id = #{modelId,jdbcType=BIGINT},
+      hardness_id = #{hardnessId,jdbcType=BIGINT},
+      coil_number = #{coilNumber,jdbcType=VARCHAR},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=BIGINT},
+      total_count = #{totalCount,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

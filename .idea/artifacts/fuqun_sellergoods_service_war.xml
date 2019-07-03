@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fuqun-sellergoods-service:war">
+    <output-path>$PROJECT_DIR$/../fuqun-parent/fuqun-sellergoods-service/target</output-path>
+    <root id="archive" name="fuqun-sellergoods-service-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="fuqun-sellergoods-service:war exploded" />
+    </root>
+  </artifact>
+</component>

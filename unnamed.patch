@@ -1,0 +1,54 @@
+Index: fuqun-dao/src/main/java/com/fuqun/mapper/OrderdetailedMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- fuqun-dao/src/main/java/com/fuqun/mapper/OrderdetailedMapper.java	(revision )
++++ fuqun-dao/src/main/java/com/fuqun/mapper/OrderdetailedMapper.java	(revision )
+@@ -0,0 +1,30 @@
++package com.fuqun.mapper;
++
++import com.fuqun.pojo.Orderdetailed;
++import com.fuqun.pojo.OrderdetailedExample;
++import java.util.List;
++import org.apache.ibatis.annotations.Param;
++
++public interface OrderdetailedMapper {
++    int countByExample(OrderdetailedExample example);
++
++    int deleteByExample(OrderdetailedExample example);
++
++    int deleteByPrimaryKey(Long id);
++
++    int insert(Orderdetailed record);
++
++    int insertSelective(Orderdetailed record);
++
++    List<Orderdetailed> selectByExample(OrderdetailedExample example);
++
++    Orderdetailed selectByPrimaryKey(Long id);
++
++    int updateByExampleSelective(@Param("record") Orderdetailed record, @Param("example") OrderdetailedExample example);
++
++    int updateByExample(@Param("record") Orderdetailed record, @Param("example") OrderdetailedExample example);
++
++    int updateByPrimaryKeySelective(Orderdetailed record);
++
++    int updateByPrimaryKey(Orderdetailed record);
++}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file

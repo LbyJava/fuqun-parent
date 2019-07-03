@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-common/fuqun-common.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-common/fuqun-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-dao/fuqun-dao.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-dao/fuqun-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-manager-web/fuqun-manager-web.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-manager-web/fuqun-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuqun-parent.iml" filepath="$PROJECT_DIR$/fuqun-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-pojo/fuqun-pojo.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-pojo/fuqun-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-sellergoods-interface/fuqun-sellergoods-interface.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-sellergoods-interface/fuqun-sellergoods-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-sellergoods-service/fuqun-sellergoods-service.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-sellergoods-service/fuqun-sellergoods-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fuqun-parent/fuqun-shop-web/fuqun-shop-web.iml" filepath="$PROJECT_DIR$/../fuqun-parent/fuqun-shop-web/fuqun-shop-web.iml" />
+    </modules>
+  </component>
+</project>

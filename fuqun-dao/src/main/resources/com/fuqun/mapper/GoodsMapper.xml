@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fuqun.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.fuqun.pojo.Goods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="subtile" property="subtile" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="model_id" property="modelId" jdbcType="BIGINT" />
+    <result column="part_id" property="partId" jdbcType="BIGINT" />
+    <result column="hardness_id" property="hardnessId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="coil_number" property="coilNumber" jdbcType="VARCHAR" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="stock" property="stock" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, brand_id, name, subtile, detail, price, model_id, part_id, hardness_id, create_time, 
+    update_time, coil_number, country_id, stock
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fuqun.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fuqun.pojo.GoodsExample" >
+    delete from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fuqun.pojo.Goods" >
+    insert into goods (id, brand_id, name, 
+      subtile, detail, price, 
+      model_id, part_id, hardness_id, 
+      create_time, update_time, coil_number, 
+      country_id, stock)
+    values (#{id,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{subtile,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{modelId,jdbcType=BIGINT}, #{partId,jdbcType=BIGINT}, #{hardnessId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{coilNumber,jdbcType=VARCHAR}, 
+      #{countryId,jdbcType=BIGINT}, #{stock,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fuqun.pojo.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="subtile != null" >
+        subtile,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="partId != null" >
+        part_id,
+      </if>
+      <if test="hardnessId != null" >
+        hardness_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="coilNumber != null" >
+        coil_number,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subtile != null" >
+        #{subtile,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="hardnessId != null" >
+        #{hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coilNumber != null" >
+        #{coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fuqun.pojo.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtile != null" >
+        subtile = #{record.subtile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detail != null" >
+        detail = #{record.detail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modelId != null" >
+        model_id = #{record.modelId,jdbcType=BIGINT},
+      </if>
+      <if test="record.partId != null" >
+        part_id = #{record.partId,jdbcType=BIGINT},
+      </if>
+      <if test="record.hardnessId != null" >
+        hardness_id = #{record.hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.coilNumber != null" >
+        coil_number = #{record.coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryId != null" >
+        country_id = #{record.countryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.stock != null" >
+        stock = #{record.stock,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set id = #{record.id,jdbcType=BIGINT},
+      brand_id = #{record.brandId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      subtile = #{record.subtile,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      model_id = #{record.modelId,jdbcType=BIGINT},
+      part_id = #{record.partId,jdbcType=BIGINT},
+      hardness_id = #{record.hardnessId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      coil_number = #{record.coilNumber,jdbcType=VARCHAR},
+      country_id = #{record.countryId,jdbcType=BIGINT},
+      stock = #{record.stock,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fuqun.pojo.Goods" >
+    update goods
+    <set >
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="subtile != null" >
+        subtile = #{subtile,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=BIGINT},
+      </if>
+      <if test="partId != null" >
+        part_id = #{partId,jdbcType=BIGINT},
+      </if>
+      <if test="hardnessId != null" >
+        hardness_id = #{hardnessId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coilNumber != null" >
+        coil_number = #{coilNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fuqun.pojo.Goods" >
+    update goods
+    set brand_id = #{brandId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      subtile = #{subtile,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      model_id = #{modelId,jdbcType=BIGINT},
+      part_id = #{partId,jdbcType=BIGINT},
+      hardness_id = #{hardnessId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      coil_number = #{coilNumber,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=BIGINT},
+      stock = #{stock,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
